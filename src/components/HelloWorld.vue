@@ -53,7 +53,7 @@
               placeholder="Link address"
               class="dialog-input"
             />
-            <button class="dialog-button">Confirm</button>
+            <button class="dialog-button" @click="handleAddLink">Confirm</button>
           </DialogContent>
         </DialogPortal>
       </DialogRoot>
@@ -324,24 +324,11 @@ const handleAddLinkButtonClick = () => {
  * @param {Boolean} openLinkInNewTab - determines if the link should open in a new tab or in the same tab
  */
 const handleAddLink = () => {
-  //console.log('add link');
-  //const linkOptions = {
-  //  href: dialogLinkInitialValue.value,
-  //
-  //  // links open in the same tab by default
-  //  target: null,
-  //};
-
-  //console.log(linkOptions);
-
-  if (openLinkInNewTab) {
-    linkOptions.target = undefined;
-  } else {
-    // tiptap, when prefilling existing content during initialization, will inject target="_blank"
-    // if there is no value for target. "_self" is the same as not setting target, so by adding it here
-    // tiptap will not inject "_blank"
-    linkOptions.target = '_self';
-  }
+  const linkOptions = {
+		href: dialogLinkInitialValue.value,
+		// links open in the same tab by default
+		target: '_self',
+  };
 
   // update link
   editor.value
